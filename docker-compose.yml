@@ -1,7 +1,7 @@
 version: '2.4'
 services:
   web:
-    container_name: web
+    container_name: army-web
     build: ./docker/nginx
     ports:
       - 8888:80
@@ -12,7 +12,7 @@ services:
       - python
 
   python:
-    container_name: python
+    container_name: army-django
     build: ./docker/python
     volumes:
       - ./app:/var/www/html
@@ -20,28 +20,12 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-      redis:
-        condition: service_healthy
-
-  redis:
-    container_name: redis
-    build: ./docker/redis
-    ports:
-      - 3300:6379
-    volumes:
-      - data-redis:/redis/data
-    working_dir: /var/www/html
-    healthcheck:
-        test: ["CMD", "redis-cli","ping"]
-        interval: 30s
-        timeout: 10s
-        retries: 3
 
   mysql:
     build: ./docker/mysql
-    container_name: mysql
+    container_name: army-mysql
     ports:
-      - 3309:3306
+      - 3310:3306
     volumes:
       - data-volume:/var/lib/mysql
     environment:
@@ -52,4 +36,3 @@ services:
 
 volumes:
   data-volume:
-  data-redis:

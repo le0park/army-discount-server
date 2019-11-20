@@ -8,7 +8,8 @@ RUN apk update \
     && apk add jpeg-dev \
     && apk add zlib-dev \
     && apk add mariadb-dev \
-    && apk add libffi-dev
+    && apk add libffi-dev \
+    && apk add postgresql-dev 
 
 # install pypi packages
 COPY requirements.txt /requirements.txt
