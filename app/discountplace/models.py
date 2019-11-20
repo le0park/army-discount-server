@@ -48,3 +48,5 @@ class Like(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     place = models.ForeignKey(to=Place, on_delete=models.SET_NULL, null=True)
 
+    class Meta:
+        unique_together = ['user', 'place']
