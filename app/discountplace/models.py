@@ -49,4 +49,4 @@ class Like(models.Model):
 class FavoriteLocation(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     latitude = models.FloatField()
-    longtitude = models.FloatField()
+    longitude = models.FloatField()
