@@ -23,15 +23,21 @@ from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 
 from rest_framework.authtoken import views
-from discountplace.views.user import register_by_access_token
-
-
 from rest_framework.routers import SimpleRouter
+
+from discountplace.views.user import *
+from discountplace.views.place import *
+from discountplace.views.like import *
+
+
 #from django.conf import settings
 
 router = SimpleRouter()
+router.register(r'likes', LikeViewSet, basename='like')
+router.register(r'places', PlaceViewSet, basename='place')
 
 urlpatterns = [
+    url(r'', include(router.urls)), 
     path('admin/', admin.site.urls),
     url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     url('', include('social_django.urls', namespace='social')),
