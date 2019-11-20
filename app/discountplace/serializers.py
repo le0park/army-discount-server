@@ -17,3 +17,8 @@ class FavoriteLocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavoriteLocation
         fields = '__all__'
+
+class PlaceRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlaceRequest
+        fields = '__all__'
