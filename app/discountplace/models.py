@@ -27,6 +27,7 @@ class Place(models.Model):
 
 
 class PlaceRequest(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     place = models.ForeignKey(to=Place, on_delete=models.SET_NULL, null=True)
     description = models.TextField()
     registration_num = models.CharField(max_length=25)
