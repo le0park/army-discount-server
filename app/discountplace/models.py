@@ -29,11 +29,10 @@ class Place(models.Model):
 class PlaceRequest(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     place = models.ForeignKey(to=Place, on_delete=models.SET_NULL, null=True)
-    description = models.TextField()
-    registration_num = models.CharField(max_length=25)
+    description = models.TextField(default='')
 
     # 0: 등록, 1: 처리완료, 2: 반려
-    accepted = models.IntegerField()
+    accepted = models.IntegerField(default=0)
     
     def __str__(self):
         return self.name
