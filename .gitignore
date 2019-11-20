@@ -1,4 +1,4 @@
-# 
+
 */__pycache__/
 */*/__pycache__/
 */*/*/__pycache__/
@@ -6,3 +6,6 @@
 /docker/mysql/data/*
 
 */config/settings.py
+
+*.tt
+/app/static/*
