@@ -15,10 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+
+from django.conf.urls import url
+
+from django.views.decorators.csrf import csrf_exempt
+
+from graphene_django.views import GraphQLView
+
+from rest_framework.authtoken import views
+from discountplace.views.user import register_by_access_token
+
+
+from rest_framework.routers import SimpleRouter
 #from django.conf import settings
+
+router = SimpleRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    url('', include('social_django.urls', namespace='social')),
+    url(r'^register-by-token/(?P<backend>[^/]+)/$', register_by_access_token),
+    url('api-token-auth/', views.obtain_auth_token),
+    url('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 """ Take this comment out to enable DebugToolbar
