@@ -9,12 +9,6 @@ class Profile(models.Model):
         return self.name
 
 
-class FavoritePlace(models.Model):
-    user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
-    latitude = models.FloatField()
-    longtitude = models.FloatField()
-
-
 class Place(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
@@ -50,3 +44,9 @@ class Like(models.Model):
 
     class Meta:
         unique_together = ['user', 'place']
+
+
+class FavoriteLocation(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
+    latitude = models.FloatField()
+    longtitude = models.FloatField()
