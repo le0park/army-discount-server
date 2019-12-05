@@ -17,6 +17,8 @@ class Place(models.Model):
     information = models.TextField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+    latitude = models.FloatField(default=0.0)
+    longitude = models.FloatField(default=0.0)
     
     description = models.TextField()
     registration_num = models.CharField(max_length=25)
@@ -49,5 +51,5 @@ class Like(models.Model):
 class FavoriteLocation(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(default='', max_length=30)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    latitude = models.FloatField(default=0.0)
+    longitude = models.FloatField(default=0.0)
