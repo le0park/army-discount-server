@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Profile(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
-    duty_date = models.CharField(max_length=100)
+    nickname = models.CharField(max_length=20, default="", blank=True)
+    duty_date = models.DateField(default=timezone.now())
 
     def __str__(self):
-        return self.name
+        return self.nickname
 
 
 class Place(models.Model):
@@ -37,7 +39,7 @@ class PlaceRequest(models.Model):
     accepted = models.IntegerField(default=0)
     
     def __str__(self):
-        return self.name
+        return self.description
 
         
 class Like(models.Model):
