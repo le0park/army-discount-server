@@ -30,6 +30,7 @@ from discountplace.views.place import *
 from discountplace.views.like import *
 from discountplace.views.favoritelocation import *
 from discountplace.views.placerequest import *
+from discountplace.views.profile import *
 
 
 #from django.conf import settings
@@ -39,6 +40,7 @@ router.register(r'likes', LikeViewSet, basename='like')
 router.register(r'places', PlaceViewSet, basename='place')
 router.register(r'favorites', FavoriteLocationViewSet, basename='favorite')
 router.register(r'placerequests', PlaceRequestViewSet, basename='placerequests')
+router.register(r'profiles', ProfileViewSet, basename='profiles')
 
 urlpatterns = [
     url(r'', include(router.urls)), 

@@ -22,7 +22,10 @@ class PlaceSerializer(CustomSerializer):
         fields = '__all__'
         extra_fields = ['likes']
 
-
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'
 
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
