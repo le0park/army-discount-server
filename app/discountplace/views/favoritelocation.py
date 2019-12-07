@@ -1,4 +1,5 @@
 from rest_framework import viewsets, status
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -10,6 +11,7 @@ class FavoriteLocationViewSet(viewsets.ModelViewSet):
     """
     Updates and retrieves Product accounts
     """
+    authentication_classes = (TokenAuthentication,)
     queryset = FavoriteLocation.objects.all()
     serializer_class = FavoriteLocationSerializer
     filter_backends = []
