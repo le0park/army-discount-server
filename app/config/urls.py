@@ -38,7 +38,7 @@ router = SimpleRouter()
 router.register(r'likes', LikeViewSet, basename='like')
 router.register(r'places', PlaceViewSet, basename='place')
 router.register(r'favorites', FavoriteLocationViewSet, basename='favorite')
-router.register(r'placerequests', PlaceRequestViewSet, basename='favorite')
+router.register(r'placerequests', PlaceRequestViewSet, basename='placerequests')
 
 urlpatterns = [
     url(r'', include(router.urls)), 
