@@ -32,3 +32,22 @@ class ProfileViewSet(viewsets.ModelViewSet):
             return Response(self.serializer_class(profile).data)
 
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, pk=None):
+        user = request.user
+        if user:
+            try: 
+                profile = Profile.objects.filter(pk=pk).get()
+            except Exception as e:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+            
+            if user.pk == profile.user.pk:
+                serializer = self.serializer_class(profile, data=request.data)
+                serializer.is_valid()
+                serializer.save()
+                return Response(serializer.data)
+            else:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
